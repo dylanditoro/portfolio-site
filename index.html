@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dylan Di Toro — Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Portfolio of Dylan Di Toro — Computer Science student in Perth, WA."/>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="container site-header">
+    <div class="brand">
+      <h1>Dylan Di Toro</h1>
+      <p>Computer Science • Perth, WA</p>
+    </div>
+    <nav class="primary-nav">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <button id="themeToggle" class="btn ghost" aria-label="Toggle theme">🌓</button>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <h2>Building simple, useful things — and learning fast.</h2>
+        <p>I’m a CS student interested in software engineering, networks, and security. I like clean code, clear docs, and shipping small projects often.</p>
+        <div class="cta-row">
+          <a class="btn" href="https://github.com/dylanditoro" target="_blank" rel="noopener">View GitHub</a>
+          <a class="btn outline" href="#projects">See Projects</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+
+    <!-- About -->
+    <section id="about" class="card reveal">
+      <h3>About</h3>
+      <p>
+        Currently studying Computer Science at ECU. Comfortable with Python, Java, SQL, Linux,
+        Wireshark, and Git. I’ve built coursework projects in systems/database design, networking,
+        and security — and I’m building a few small tools for fun.
+      </p>
+    </section>
+
+    <!-- Project Filters -->
+    <section id="projects" class="reveal">
+      <div class="section-head">
+        <h3>Projects</h3>
+        <div class="filters" aria-label="Project filters">
+          <button class="chip is-active" data-filter="all">All</button>
+          <button class="chip" data-filter="python">Python</button>
+          <button class="chip" data-filter="sql">SQL</button>
+          <button class="chip" data-filter="web">Web</button>
+        </div>
+      </div>
+
+      <ul class="cards">
+        <!-- To-Do List -->
+        <li class="card project" data-tags="python">
+          <div class="card-body">
+            <h4>To-Do List (Python)</h4>
+            <p>Console app to add/list/remove tasks. Clean, commented code and a readable README.</p>
+            <div class="meta">
+              <span class="tag">Python</span><span class="tag">CLI</span>
+            </div>
+            <div class="actions">
+              <a class="btn small" target="_blank" rel="noopener" href="https://github.com/dylanditoro/todo-list">GitHub</a>
+            </div>
+          </div>
+        </li>
+
+        <!-- SQL Library -->
+        <li class="card project" data-tags="sql">
+          <div class="card-body">
+            <h4>SQL Database Demo</h4>
+            <p>Library schema + sample joins/queries. Demonstrates PK/FK relationships and normalization.</p>
+            <div class="meta">
+              <span class="tag">SQL</span><span class="tag">Schema</span>
+            </div>
+            <div class="actions">
+              <a class="btn small" target="_blank" rel="noopener" href="https://github.com/dylanditoro/sql-database-demo">Open on GitHub</a>
+            </div>
+          </div>
+        </li>
+
+        <!-- Portfolio site (this site) -->
+        <li class="card project" data-tags="web">
+          <div class="card-body">
+            <h4>Portfolio Website</h4>
+            <p>Responsive HTML/CSS site with theme toggle, filters, and scroll animations. Deployed on GitHub Pages.</p>
+            <div class="meta">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+            </div>
+            <div class="actions">
+              <a class="btn small" href="#contact">Contact</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="card reveal">
+      <h3>Skills</h3>
+      <ul class="tags">
+        <li>Python</li><li>Java</li><li>SQL</li><li>Linux</li><li>Wireshark</li>
+        <li>Git/GitHub</li><li>HTML/CSS</li><li>MATLAB</li>
+      </ul>
+
+      <!-- Simple skill bars -->
+      <div class="bars">
+        <div class="bar"><span>Python</span><i style="width:85%"></i></div>
+        <div class="bar"><span>SQL</span><i style="width:70%"></i></div>
+        <div class="bar"><span>Linux</span><i style="width:75%"></i></div>
+        <div class="bar"><span>HTML/CSS</span><i style="width:80%"></i></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="card reveal">
+      <h3>Contact</h3>
+      <p>Best way to reach me is email. Or use the form below.</p>
+      <!-- Formspree works without a backend; replace YOUR_FORM_ID when you make one -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+        <input name="name" placeholder="Your name" required />
+        <input type="email" name="_replyto" placeholder="Your email" required />
+        <textarea name="message" rows="4" placeholder="Your message" required></textarea>
+        <button class="btn" type="submit">Send</button>
+        <button class="btn outline" type="button" id="copyEmail">Copy my email</button>
+      </form>
+      <small id="copied" class="muted" role="status" aria-live="polite"></small>
+    </section>
+
+  </main>
+
+  <button id="toTop" class="to-top" aria-label="Back to top">↑</button>
+
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('light');
+      localStorage.setItem('theme', document.documentElement.classList.contains('light') ? 'light' : 'dark');
+    });
+    // Persist theme
+    if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light');
+
+    // Filters
+    const chips = document.querySelectorAll('.chip');
+    const cards = document.querySelectorAll('.project');
+    chips.forEach(chip => chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('is-active'));
+      chip.classList.add('is-active');
+      const f = chip.dataset.filter;
+      cards.forEach(card => {
+        const tags = card.dataset.tags.split(',');
+        card.style.display = (f === 'all' || tags.includes(f)) ? '' : 'none';
+      });
+    }));
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Back to top
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', () => {
+      toTop.classList.toggle('show', window.scrollY > 600);
+    });
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Copy email
+    document.getElementById('copyEmail').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('ditorodylan@gmail.com');
+        const el = document.getElementById('copied');
+        el.textContent = 'Email copied to clipboard ✅';
+        setTimeout(() => el.textContent = '', 2000);
+      } catch {}
+    });
+  </script>
+</body>
+</html>
